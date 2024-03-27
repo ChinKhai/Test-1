@@ -27,7 +27,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 if($_SERVER['HTTP_HOST']=="mytesting.local"){
 $config['base_url'] = 'http://mytesting.local/index.php/';
 }else{
-    $config['base_url']='http://mytesting.com.my/index.php/';
+$config['base_url']='http://mytesting.com.my/index.php/';
 }
 
 /*

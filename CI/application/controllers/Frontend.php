@@ -4,6 +4,11 @@ class Frontend extends CI_Controller{
         $this->load->view("header");
     }
 
+    public function product_list(){
+        $this->load->view("header");
+        $this->load->view("product_list");
+    }
+
     public function add_product(){
         $this->load->view('header');
         $this->load->view('add_product');

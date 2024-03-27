@@ -11,23 +11,11 @@
 
                     <div class="navbar-collapse collapse" id="mobile_menu">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="/">Home</a></li>
-                            <li><a href="#" class="dropdown-toggle" data-toggle="dropdown">About Us <span class="caret"></span></a>
-                                <ul class="dropdown-menu">
-                                    <li><a href="#">About One</a></li>
-                                    <li><a href="#">About Two</a></li>
-                                    <li><a href="#">About Three</a></li>
-                                    <li><a href="#">About Four</a></li>
-                                    <li><a href="#">About Five</a></li>
-                                    <li><a href="#">About Six</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Welcome</a></li>
-                            <li><a href="#">Services</a></li>
-                            <li><a href="#">Gallery</a></li>
+                            <li><a href="/">Home</a></li>
+                            <li><a href="<?=base_url('product_list')?>">Product Manage</a></li>
                             <li><a href="#">Contact Us</a></li>
                         </ul>
-                        <ul class="nav navbar-nav">
+                        <!-- <ul class="nav navbar-nav">
                             <li>
                                 <form action="" class="navbar-form">
                                     <div class="form-group">
@@ -36,9 +24,9 @@
                                             <span class="input-group-addon"><span class="glyphicon glyphicon-search"></span></span>
                                         </div>
                                     </div>
-                                </form>
+                                </form> 
                             </li>
-                        </ul>
+                        </ul> -->
 
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
