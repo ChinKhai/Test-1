@@ -16,7 +16,7 @@
             Product Name:<input type="text" name="product_name" class="form-control"/><br/><br/>
             Quantity:<input type="int" name="quantity" class="form-control"/><br/>
             <div class="button-group">
-                    <button class="btn btn-success">Submit</button>
+                    <button class="btn btn-success" type="submit">Submit</button>
                 <a href="<?= base_url('/') ?>"><button type="button" class="btn btn-secondary">Go Back</button></a>
             </div>
             </form>

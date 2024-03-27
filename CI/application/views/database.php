@@ -8,4 +8,6 @@
 
     //to connect database
     $link = mysqli_connect($hostname,$username,$password,$dbname) or die (mysqli_error($link));
+
+    
 ?>
