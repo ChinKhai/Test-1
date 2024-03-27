@@ -53,6 +53,7 @@ $route['product_list']='frontend/product_list';
 $route['add_product']='frontend/add_product';
 $route['update_product']='frontend/update_product';
 $route['view_product']='frontend/view_product';
+$route['submit']="frontend/submit";
 
 $route['default_controller'] = 'frontend/home';
 $route['404_override'] = '';

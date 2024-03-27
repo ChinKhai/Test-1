@@ -22,6 +22,10 @@ class Frontend extends CI_Controller{
     public function view_product(){
         echo "<h1>Product Details</h1>";
     }
+
+    public function submit(){
+        $this->load->view("submit");
+    }
 }
 
 ?>
