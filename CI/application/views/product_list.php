@@ -20,22 +20,24 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
         <div class="col-sm-10">
             <h1>Product List</h1>
         </div>
-        <div class="col-sm-2" style="margin-top:20px">
+        <div class="col-sm-2" style="margin-top:28px">
             <a href="<?=base_url('add_product') ?>">
                 <button class="btn btn-success" style="color:white">Add Product</button>
             </a>
         </div>
     </div>
-        <table class="table">
-<thead>
-    <tr>
-        <th>Id</th>
-        <th>Product Name</th>
-        <th>Quantity</th>
-        <th>Created at</th>
-        <th>Motified at</th>
-    </tr>
-</thead>
+    <br/>
+
+        <table class="table text-center">
+    <thead>
+        <tr>
+            <th class="text-center">Id</th>
+            <th class="text-center">Product Name</th>
+            <th class="text-center">Quantity</th>
+            <th class="text-center">Created at</th>
+            <th class="text-center">Motified at</th>
+        </tr>
+    </thead>
 <tbody>
     <?php
         if( mysqli_num_rows ($query) > 0){
@@ -49,7 +51,7 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
                 <?php
                 if($row['motified_date']==NULL){
                     ?>
-                    <td>This product haven't motified before</td>
+                    <td>N/A</td>
                     <?php
                 }else{
                     ?>                
