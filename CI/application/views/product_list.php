@@ -17,14 +17,10 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
 ?>
 <div class="container">
     <div class="row">
-        <div class="col-sm-10">
             <h1>Product List</h1>
-        </div>
-        <div class="col-sm-2" style="margin-top:28px">
             <a href="<?=base_url('add_product') ?>">
                 <button class="btn btn-success" style="color:white">Add Product</button>
             </a>
-        </div>
     </div>
     <br/>
 
@@ -36,6 +32,7 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
             <th class="text-center">Quantity</th>
             <th class="text-center">Created at</th>
             <th class="text-center">Motified at</th>
+            <th></th>
         </tr>
     </thead>
 <tbody>
@@ -59,7 +56,12 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
                     <?php
                 }
                 ?>
+                <td><a href="edit.php" class="btn btn-primary">
+                    <i class="glyphicon glyphicon-pencil"></i></a>
 
+                    <a href="delete.php" class="btn btn-danger">
+                    <i class="glyphicon glyphicon-trash"></i></a>
+                </td>
             </tr>
             <?php
             }
