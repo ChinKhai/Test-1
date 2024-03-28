@@ -11,9 +11,6 @@
 <?php
 
 include "database.php";
-
-
-$query= mysqli_query ($link,"SELECT * FROM `product`")
 ?>
 <div class="container">
     <div class="row">
@@ -37,9 +34,12 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
     </thead>
 <tbody>
     <?php
-        if( mysqli_num_rows ($query) > 0){
-            while($row = mysqli_fetch_array($query)){
-                ?>
+        // if( mysqli_num_rows ($query) > 0){
+        //     while($row = mysqli_fetch_array($query)){
+        //         
+        if(!empty($List)){
+            foreach($List as $row){
+        ?>
             <tr>
                 <td><?=$row['product_id']?></td>
                 <td><?=$row['product_name']?></td>
@@ -56,7 +56,7 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
                     <?php
                 }
                 ?>
-                <td><a href="update_product" class="btn btn-primary">
+                <td><a href="<?=base_url('update_product/')?>" class="btn btn-primary">
                     <i class="glyphicon glyphicon-pencil"></i></a>
 
                     <a href="delete_product" class="btn btn-danger">
