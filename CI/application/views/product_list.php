@@ -33,10 +33,7 @@ include "database.php";
         </tr>
     </thead>
 <tbody>
-    <?php
-        // if( mysqli_num_rows ($query) > 0){
-        //     while($row = mysqli_fetch_array($query)){
-        //         
+    <?php       
         if(!empty($List)){
             foreach($List as $row){
         ?>
@@ -56,7 +53,7 @@ include "database.php";
                     <?php
                 }
                 ?>
-                <td><a href="<?=base_url('update_product/')?>" class="btn btn-primary">
+                <td><a href="<?=base_url('update_product/').$row['product_id']?>" class="btn btn-primary">
                     <i class="glyphicon glyphicon-pencil"></i></a>
 
                     <a href="delete_product" class="btn btn-danger">
