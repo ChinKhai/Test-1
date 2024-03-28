@@ -12,9 +12,9 @@
     <div class="container">
         <div class="starter-template">
             <h1>Add Product</h1>
-            <form method="POST" action="submit" onsubmit="alert('Add Product Successfully')" >
-            Product Name:<input type="text" name="product_name" class="form-control"/><br/><br/>
-            Quantity:<input type="int" name="quantity" class="form-control"/><br/>
+            <form method="POST" action="submit" onsubmit= "return validation()" >
+            Product Name:<input type="text" id="product_name" name="product_name" class="form-control"/><br/><br/>
+            Quantity:<input type="int" id="quantity" name="quantity" class="form-control"/><br/>
             <div class="button-group">
                     <button class="btn btn-success" type="submit">Submit</button>
                 <a href="<?= base_url('/') ?>"><button type="button" class="btn btn-secondary">Go Back</button></a>
@@ -22,6 +22,24 @@
             </form>
         </div>
     </div>
+
+    <script>
+        function validation(){
+            var pname=$("#product_name").val();
+            var quantity=$("#quantity").val();
+            if(pname==""){
+                alert("Your product name is empty. Please key in your product name.");
+                return false;
+            }else if (quantity==""){
+                alert("Your quantity is empty.")
+                return false;
+            }else{
+                alert("Add Product Successfully!!!")
+                return true;
+            }
+        }
+
+    </script>
 
     <script src="..\..\css\bootstrap.css"></script>
     <script src="..\..\css\bootstrap-grid.css"></script>

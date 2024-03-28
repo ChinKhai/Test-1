@@ -56,10 +56,10 @@ $query= mysqli_query ($link,"SELECT * FROM `product`")
                     <?php
                 }
                 ?>
-                <td><a href="edit.php" class="btn btn-primary">
+                <td><a href="update_product" class="btn btn-primary">
                     <i class="glyphicon glyphicon-pencil"></i></a>
 
-                    <a href="delete.php" class="btn btn-danger">
+                    <a href="delete_product" class="btn btn-danger">
                     <i class="glyphicon glyphicon-trash"></i></a>
                 </td>
             </tr>

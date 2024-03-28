@@ -12,15 +12,16 @@ class Frontend extends CI_Controller{
     public function add_product(){
         $this->load->view('header');
         $this->load->view('add_product');
-
     }
 
     public function update_product(){
-        echo "<h1>Update Product</h1>";
+        $this->load->view('header');
+        $this->load->view('update_product');
     }
 
-    public function view_product(){
-        echo "<h1>Product Details</h1>";
+    public function delete_product(){
+        $this->load->view('delete_product');
+
     }
 
     public function submit(){
