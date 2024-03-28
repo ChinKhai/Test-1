@@ -54,7 +54,8 @@ $route['add_product']='frontend/add_product';
 $route['update_product/(:num)']='frontend/update_product/$1';
 $route['view_product']='frontend/view_product';
 $route['submit']="frontend/submit";
-$route['delete_product']='frontend/delete_product';
+$route['update']="frontend/update";
+$route['delete_product/(:num)']='frontend/delete_product/$1';
 
 $route['default_controller'] = 'frontend/home';
 $route['404_override'] = '';

@@ -24,7 +24,7 @@ include "database.php";
         <table class="table text-center">
     <thead>
         <tr>
-            <th class="text-center">Id</th>
+            <th class="text-center">Product Id</th>
             <th class="text-center">Product Name</th>
             <th class="text-center">Quantity</th>
             <th class="text-center">Created at</th>
@@ -56,7 +56,7 @@ include "database.php";
                 <td><a href="<?=base_url('update_product/').$row['product_id']?>" class="btn btn-primary">
                     <i class="glyphicon glyphicon-pencil"></i></a>
 
-                    <a href="delete_product" class="btn btn-danger">
+                    <a href="<?=base_url('delete_product/').$row['product_id']?>" class="btn btn-danger">
                     <i class="glyphicon glyphicon-trash"></i></a>
                 </td>
             </tr>
