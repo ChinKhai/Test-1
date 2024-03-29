@@ -9,17 +9,13 @@
 
 <body>
 <?php
-
-include "database.php";
 ?>
 <div class="container">
     <h1>Product List</h1>
-    <div class="row">
-    <div class="col-sm">
+
     <a href="<?=base_url('add_product') ?>">
         <button class="btn btn-success" style="color:white">Add Product</button>
     </a>
-</div>
 <form class="text-right" action="<?= base_url('product_list/search') ?>" method="GET">
     <div class="form-inline justify-content-end">
         <div class="form-group mb-2">

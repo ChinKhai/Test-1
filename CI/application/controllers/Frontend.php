@@ -9,10 +9,6 @@ class Frontend extends CI_Controller{
 
     public function home(){
     }
-
-
-
-
     public function product_list($page=1){
         
 
@@ -118,7 +114,18 @@ class Frontend extends CI_Controller{
     }
 
     public function submit(){
-        $this->load->view("submit");
+        $product_name = $this->input->post('product_name',true);
+        $quantity = $this->input->post('quantity',true);
+        
+
+        $this->Product_model->insert(array(
+            'product_name'=>$product_name,
+            'quantity'=>$quantity,
+            'created_date'=>date("Y-m-d H:i:s"),
+        ));
+        if($this->db->affected_rows() > 0){
+            redirect(base_url('product_list'));
+        }
     }
 
     public function dashboard(){

@@ -12,7 +12,7 @@
     <div class="container">
         <div class="starter-template">
             <h1>Add Product</h1>
-            <form method="POST" action="submit" onsubmit= "return validation()" >
+            <form method="POST" action="<?=base_url('submit')?>" onsubmit= "return validation()" >
             Product Name:<input type="text" id="product_name" name="product_name" class="form-control"/><br/><br/>
             Quantity:<input type="int" id="quantity" name="quantity" class="form-control"/><br/>
             <div class="button-group">
