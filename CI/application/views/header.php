@@ -13,7 +13,7 @@
                         <ul class="nav navbar-nav">
                             <li><a href="/">Home</a></li>
                             <li><a href="<?=base_url('product_list')?>">Product Manage</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="<?=base_url('dashboard')?>">dashboard</a></li>
                         </ul>
                         <!-- <ul class="nav navbar-nav">
                             <li>

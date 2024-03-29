@@ -11,6 +11,8 @@ class Frontend extends CI_Controller{
     }
 
 
+
+
     public function product_list($page=1){
         
 
@@ -45,11 +47,11 @@ class Frontend extends CI_Controller{
         $config['last_tag_open']="<li>";
         $config['last_tag_close']="</li>";
 
-        $config['prev_link']="<i class='fa fa-angle-left'></i>";
+        $config['prev_link']="<i class='fa fa-angle-left'><</i>";
         $config['prev_tag_open']="<li>";
         $config['prev_tag_close']="</li>";
 
-        $config['next_link']="<i class='fa fa-angle-right'></i>";
+        $config['next_link']="<i class='fa fa-angle-right'>></i>";
         $config['next_tag_open']="<li>";
         $config['next_tag_close']="</li>";
 
@@ -90,7 +92,7 @@ class Frontend extends CI_Controller{
             ));
 
             if($this->db->affected_rows() > 0){
-                redirect('product_list');
+                redirect(base_url('product_list'));
             }
         }
         
@@ -119,7 +121,67 @@ class Frontend extends CI_Controller{
         $this->load->view("submit");
     }
 
-    public function update(){
+    public function dashboard(){
+        //get the data
+        $datalist=$this->Product_model->get_where(array(
+            'is_deleted'=>0,
+        ));
+
+        //get the date group
+        $dateGroup=array();
+
+
+        //check whether the datalist empty
+        if(!empty($datalist)){
+            foreach($datalist as $v){
+                //show all the data
+                //sub string and get the create data from 0-10 bits -> (2001-02-03)
+                if(isset($dateGroup[substr($v['created_date'],0,10)])){
+                    //if the date exist, it will increase the value 
+                    $dateGroup[substr($v['created_date'],0,10)]++;
+                }else{
+                    //if there is new date, it will make the value of the date become 1
+                    $dateGroup[substr($v['created_date'],0,10)]=1;
+                }
+            }
+        }
+
+        //ksort = key sort, sort= value sort
+        ksort($dateGroup);
+
+        //array（“横轴”，“纵轴”）
+        $finalFormat=array(
+            array("Created-date","Quantity")
+        );
+
+        //confirm the date group is not empty
+        if(!empty($dateGroup)){
+
+            //show the key(created_date) and value(add the product times)
+            foreach($dateGroup as $k=>$v){
+                $finalFormat[]=array(
+                    $k, $v
+                );
+            }
+
+        }
+        //declare the data and bring them to view to proceed
+        $this->data['finalFormat']=$finalFormat;
+
+        $this->load->view('dashboard',$this->data);
+    }
+
+    public function search(){
+        $page_number = $this->input->get('page_number', true);
+    
+        // Validate page number
+        if(!is_numeric($page_number) || $page_number <= 0) {
+            // Invalid page number, redirect to product list
+            redirect(base_url('product_list'));
+        }
+    
+        // Redirect to the requested page
+        redirect(base_url('product_list/' . $page_number));
     }
 }
 ?>

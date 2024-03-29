@@ -13,15 +13,24 @@
 include "database.php";
 ?>
 <div class="container">
+    <h1>Product List</h1>
     <div class="row">
-            <h1>Product List</h1>
-            <a href="<?=base_url('add_product') ?>">
-                <button class="btn btn-success" style="color:white">Add Product</button>
-            </a>
+    <div class="col-sm">
+    <a href="<?=base_url('add_product') ?>">
+        <button class="btn btn-success" style="color:white">Add Product</button>
+    </a>
+</div>
+<form class="text-right" action="<?= base_url('product_list/search') ?>" method="GET">
+    <div class="form-inline justify-content-end">
+        <div class="form-group mb-2">
+            <input class="form-control form-control-sm" type="text" name="page_number" placeholder="Page..." style="width: 80px;">
+        </div>
+        <button class="btn btn-primary btn-sm" type="submit">Go</button>
     </div>
+</form>
     <br/>
 
-        <table class="table text-center">
+<table class="table text-center">
     <thead>
         <tr>
             <th class="text-center">Product Id</th>
@@ -68,7 +77,9 @@ include "database.php";
 </table>
 
 <nav class="text-center">
-    <?=$pagination?>
+    <?=$pagination?> 
+</form>
+
 </nav>
 
 </div>
