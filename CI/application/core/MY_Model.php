@@ -33,6 +33,21 @@ class MY_Model extends CI_Model{
     {
         $this->db->update($this->tablename,$update_array,$where);
     }
+
+    public function record_count($where=array()){
+        $this->db->select("COUNT(*) AS TOTAL");
+        $this->db->where($where);
+        $query= $this->db->get($this->tablename);
+        $row=$query->row_array();
+        return $row['TOTAL'];
+    }
+
+    public function fetch($where=array(),$limit,$start){
+        $this->db->where($where);
+        $this->db->limit($limit,$start);
+        $query = $this->db->get($this->tablename);
+        return $query->result_array();   //return multidimentional array
+    }
 }
 
 ?>

@@ -38,7 +38,7 @@
             }else{
                 alert("Update Product Successfully!!!")
                 return true;
-                header("Location: " . base_url('/product_list'));
+                return header("Location: " . base_url('/product_list'));
             }
         }
 

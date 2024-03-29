@@ -11,7 +11,7 @@ class Frontend extends CI_Controller{
     }
 
 
-    public function product_list(){
+    public function product_list($page=1){
         $productlist=$this->Product_model->get_where(array(
             'is_deleted'=> 0,
         ));
@@ -19,6 +19,49 @@ class Frontend extends CI_Controller{
         $product_data=[
             'List' => $productlist,
         ];
+
+        $sql=array();
+
+        $item_per_page=10;
+        $start=($page-1)*$item_per_page;
+        $total_records=$this->Product_model->record_count($sql);
+        echo "Total Records: " . $total_records;
+
+        // $this->data['product_list']=$this->Product_model->fetch($sql,$total_records,$start);
+
+        $this->load->library('pagination');
+        $config['base_url']=base_url('product_list');
+        $config['total_rows']=$total_records;
+        $config['per_page']=$item_per_page;
+        $config['use_page_numbers']=true;
+        $config['full_tag_open']="<ul class='pagination'>";
+        $config['full_tag_close']="</ul>";
+
+        $config['first_link']="First";
+        $config['first_tag_open']="<li>";
+        $config['first_tag_close']="</li>";
+
+        $config['last_link']="Last";
+        $config['last_tag_open']="<li>";
+        $config['last_tag_close']="</li>";
+
+        $config['prev_link']="<i class='fa fa-angle-left'></i>";
+        $config['prev_tag_open']="<li>";
+        $config['prev_tag_close']="</li>";
+
+        $config['next_link']="<i class='fa fa-angle-right'></i>";
+        $config['next_tag_open']="<li>";
+        $config['next_tag_close']="</li>";
+
+        $config['num_tag_open']="<li>";
+        $config['num_tag_close']="</li>";
+        $config['cur_tag_open']="<li class='active'><a href='#'>";
+        $config['cur_tag_close']="</a></li>";
+
+        $this->pagination->initialize($config);
+        $this->data['pagination']=$this->pagination->create_links();
+
+        $product_data['pagination'] = $this->data['pagination'];
 
 
         $this->load->view("product_list",$product_data);
@@ -32,7 +75,7 @@ class Frontend extends CI_Controller{
         $this->data['productData'] = $this->Product_model->getOne(array(
             'product_id'=> $product_id
         ));    
-
+        $this->load->view('update_product',$this->data);
         $id=$this->input->post('id',true);
         $pro_name=$this->input->post('product_name',true);
         $qty=$this->input->post('quantity',true);
@@ -49,10 +92,7 @@ class Frontend extends CI_Controller{
                 'motified_date' =>date("Y-m-d H:i:s"),
             ));
         }
-        $this->load->view('update_product',$this->data);
-
         
-
     }
 
     public function delete_product($product_id){
