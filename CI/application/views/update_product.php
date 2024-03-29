@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="jumbotron.css" rel="stylesheet">
-    <title>Add Product</title>
+    <title>Update Product</title>
 </head>
 
 <body>

@@ -12,22 +12,22 @@ class Frontend extends CI_Controller{
 
 
     public function product_list($page=1){
-        $productlist=$this->Product_model->get_where(array(
-            'is_deleted'=> 0,
-        ));
+        
 
-        $product_data=[
-            'List' => $productlist,
-        ];
+      
+        $sql=array('is_deleted' => 0,);
 
-        $sql=array();
 
-        $item_per_page=10;
+        $item_per_page=5;
         $start=($page-1)*$item_per_page;
         $total_records=$this->Product_model->record_count($sql);
-        echo "Total Records: " . $total_records;
+        $this->data['product_list']=$this->Product_model->fetch($sql, $item_per_page,$start);
+        
+        $product_data=[
+            'List' => $this->data['product_list'],
+        ];
 
-        // $this->data['product_list']=$this->Product_model->fetch($sql,$total_records,$start);
+        //print_r($this->db->last_query());exit;
 
         $this->load->library('pagination');
         $config['base_url']=base_url('product_list');
@@ -59,10 +59,7 @@ class Frontend extends CI_Controller{
         $config['cur_tag_close']="</a></li>";
 
         $this->pagination->initialize($config);
-        $this->data['pagination']=$this->pagination->create_links();
-
-        $product_data['pagination'] = $this->data['pagination'];
-
+        $product_data['pagination']=$this->pagination->create_links();
 
         $this->load->view("product_list",$product_data);
     }
@@ -76,14 +73,14 @@ class Frontend extends CI_Controller{
             'product_id'=> $product_id
         ));    
         $this->load->view('update_product',$this->data);
-        $id=$this->input->post('id',true);
-        $pro_name=$this->input->post('product_name',true);
-        $qty=$this->input->post('quantity',true);
-
 
         if(empty($this->data['productData'])){
             alert("This product doesn't exist!");
         }else{
+            $id=$this->input->post('id',true);
+            $pro_name=$this->input->post('product_name',true);
+            $qty=$this->input->post('quantity',true);
+    
             $this->Product_model->update(array(
                 'product_id'=>$id,
             ),array(
@@ -91,6 +88,10 @@ class Frontend extends CI_Controller{
                 'quantity'=>$qty,
                 'motified_date' =>date("Y-m-d H:i:s"),
             ));
+
+            if($this->db->affected_rows() > 0){
+                redirect('product_list');
+            }
         }
         
     }
@@ -119,7 +120,6 @@ class Frontend extends CI_Controller{
     }
 
     public function update(){
-
     }
 }
 ?>

@@ -66,6 +66,7 @@ include "database.php";
         ?>
 </tbody>
 </table>
+
 <nav class="text-center">
     <?=$pagination?>
 </nav>

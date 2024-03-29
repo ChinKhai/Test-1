@@ -42,11 +42,13 @@ class MY_Model extends CI_Model{
         return $row['TOTAL'];
     }
 
-    public function fetch($where=array(),$limit,$start){
+    //$limit 一次抓几个row （item_per_page)
+    //fetch  抓数据
+    public function fetch($where=array(), $limit, $start){
         $this->db->where($where);
-        $this->db->limit($limit,$start);
+        $this->db->limit($limit, $start);
         $query = $this->db->get($this->tablename);
-        return $query->result_array();   //return multidimentional array
+        return $query->result_array();   // Return multidimensional array
     }
 }
 
