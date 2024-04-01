@@ -3,11 +3,11 @@ class Frontend extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
-        $this->load->view("header");
         $this->load->model("Product_model");
     }
 
     public function home(){
+        $this->load->view("header");
         $this->load->view('home');
     }
 
@@ -61,14 +61,18 @@ class Frontend extends CI_Controller{
         $this->pagination->initialize($config);
         $product_data['pagination']=$this->pagination->create_links();
 
+        $this->load->view("header");
         $this->load->view("product_list",$product_data);
     }
 
     public function add_product(){
+        $this->load->view("header");
         $this->load->view('add_product');
     }
 
     public function update_product($product_id){
+        $this->load->view("header");
+
         $this->data['productData'] = $this->Product_model->getOne(array(
             'product_id'=> $product_id
         ));    
@@ -97,6 +101,7 @@ class Frontend extends CI_Controller{
     }
 
     public function delete_product($product_id){
+
         $this->data['productData'] = $this->Product_model->getOne(array(
             'product_id'=> $product_id
         ));    
@@ -131,6 +136,7 @@ class Frontend extends CI_Controller{
     }
 
     public function dashboard(){
+        $this->load->view("header");
         //get the data
         $datalist=$this->Product_model->get_where(array(
             'is_deleted'=>0,
@@ -191,6 +197,49 @@ class Frontend extends CI_Controller{
     
         // Redirect to the requested page
         redirect(base_url('product_list/' . $page_number));
+    }
+
+    //after click a function, it do not go to backend page and can do the read from the web server after doing a function (ajax)
+    //need to do an ajax, need to have a API
+    public function addqtyAPI(){
+        //post the quantity
+        $qty=$this->input->post("quantity",true);
+        $product_id=$this->input->post("product_id",true);
+
+        //get the data according to the product_id
+        $productData=$this->Product_model->getOne(array(
+            'product_id'=>$product_id,
+        ));
+
+        //check whether the data empty or not
+        if(empty($productData)){
+            show_error();
+        }
+
+        $product_name=$productData['product_name'];
+
+        //Determine the product exists
+        $product_Data=$this->Product_model->getOne(array(
+            'product_id'=>$product_id,
+            'is_deleted'=>0,
+        ));
+        if(!empty($product_Data)){
+            $currentqty=$product_Data['quantity'];
+            $totalqty=$currentqty+$qty;
+
+            $this->Product_model->update(array(
+                'product_id'=>$product_Data['product_id'],
+            ),array(
+                'quantity'=>$totalqty,
+                'motified_date'=>date("Y-m-d H:i:s"),
+            ));
+        }else{
+            alert("This product doesn't exist!");
+        }
+
+        echo json_encode(array(
+            'status'=>"OK",
+        ));
     }
 }
 ?>

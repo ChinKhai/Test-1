@@ -63,6 +63,9 @@
 
                     <a href="<?=base_url('delete_product/').$row['product_id']?>" class="btn btn-danger">
                     <i class="glyphicon glyphicon-trash"></i></a>
+
+                    <a href="javascript:;" onclick="addqtyAjax('<?=$row['product_id']?>')" class="btn btn-success">
+                    <i class="glyphicon glyphicon-plus"></i></a>
                 </td>
             </tr>
             <?php
@@ -82,6 +85,23 @@
     
     <script src="..\..\css\bootstrap.css"></script>
     <script src="..\..\css\bootstrap-grid.css"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+    <script>
+        function addqtyAjax(pid){
+            console.log(pid);
+
+            $.post("<?=base_url('addqtyAPI')?>",{quantity:1,product_id:pid},function(result){
+                console.log(result);
+                result=JSON.parse(result);
+                if(result.status=="OK"){
+                    alert('Add Successfully!');
+                }else{
+                    alert('Something wrong!');
+                }
+            });
+        }
+    </script>
     <style>
     </style>
 </body>

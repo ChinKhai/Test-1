@@ -59,6 +59,7 @@ $route['update']="frontend/update";
 $route['delete_product/(:num)']='frontend/delete_product/$1';
 $route['dashboard']='frontend/dashboard';
 $route['product_list/search'] = 'frontend/search';
+$route['addqtyAPI']="frontend/addqtyAPI";
 
 
 $route['default_controller'] = 'frontend/home';
