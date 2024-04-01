@@ -95,9 +95,9 @@
                 console.log(result);
                 result=JSON.parse(result);
                 if(result.status=="OK"){
-                    alert('Add Successfully!');
+                    location.reload();
                 }else{
-                    alert('Something wrong!');
+                    alert("The product doesn't exist!");
                 }
             });
         }
