@@ -8,7 +8,9 @@ class Frontend extends CI_Controller{
     }
 
     public function home(){
+        $this->load->view('home');
     }
+
     public function product_list($page=1){
         
 
@@ -108,7 +110,7 @@ class Frontend extends CI_Controller{
                 'is_deleted'=>1,
             ));
 
-            redirect('product_list');
+            redirect(base_url('product_list'));
         }
         
     }
