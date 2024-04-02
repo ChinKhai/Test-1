@@ -89,15 +89,14 @@
 
     <script>
         function addqtyAjax(pid){
-            console.log(pid);
 
             $.post("<?=base_url('addqtyAPI')?>",{quantity:1,product_id:pid},function(result){
                 console.log(result);
                 result=JSON.parse(result);
                 if(result.status=="OK"){
-                    alert('Add Successfully!');
+                    location.reload();
                 }else{
-                    alert('Something wrong!');
+                    alert("The product doesn't exist!");
                 }
             });
         }
