@@ -76,6 +76,7 @@ class Frontend extends CI_Controller{
         $this->data['productData'] = $this->Product_model->getOne(array(
             'product_id'=> $product_id
         ));    
+        
         $this->load->view('update_product',$this->data);
 
         if(empty($this->data['productData'])){
@@ -100,29 +101,24 @@ class Frontend extends CI_Controller{
         
     }
 
-    public function delete_product($product_id){
+    public function delete_product($product_id){  
 
         $this->data['productData'] = $this->Product_model->getOne(array(
             'product_id'=> $product_id
-        ));  
+        ));    
 
-        $this->load->view('delete',$this->data);
-
-        // $this->data['productData'] = $this->Product_model->getOne(array(
-        //     'product_id'=> $product_id
-        // ));    
-
-        // if(empty($this->data['productData'])){
-        //     alert("This product doesn't exist!");
-        // }else{
-        //     $this->Product_model->update(array(
-        //         'product_id'=>$product_id,
-        //     ),array(
-        //         'is_deleted'=>1,
-        //     ));
-
-        //     redirect(base_url('product_list'));
-        // }
+        if(empty($this->data['productData'])){
+            echo "<script>alert('This product does not exist!');</script>";
+        }else{
+            $this->Product_model->update(array(
+                'product_id'=>$product_id,
+            ),array(
+                'is_deleted'=>1,
+            ));
+            echo "<script>alert('This product deleted successfully!');";
+            echo 'window.location.href = "'. base_url('product_list') .'";</script>';
+            // redirect(base_url('product_list'));
+        }
         
     }
 
