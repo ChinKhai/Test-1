@@ -104,26 +104,35 @@ class Frontend extends CI_Controller{
 
         $this->data['productData'] = $this->Product_model->getOne(array(
             'product_id'=> $product_id
-        ));    
+        ));  
 
-        if(empty($this->data['productData'])){
-            alert("This product doesn't exist!");
-        }else{
-            $this->Product_model->update(array(
-                'product_id'=>$product_id,
-            ),array(
-                'is_deleted'=>1,
-            ));
+        $this->load->view('delete',$this->data);
 
-            redirect(base_url('product_list'));
-        }
+        // $this->data['productData'] = $this->Product_model->getOne(array(
+        //     'product_id'=> $product_id
+        // ));    
+
+        // if(empty($this->data['productData'])){
+        //     alert("This product doesn't exist!");
+        // }else{
+        //     $this->Product_model->update(array(
+        //         'product_id'=>$product_id,
+        //     ),array(
+        //         'is_deleted'=>1,
+        //     ));
+
+        //     redirect(base_url('product_list'));
+        // }
         
     }
 
     public function submit(){
-        $product_name = $this->input->post('product_name',true);
-        $quantity = $this->input->post('quantity',true);
-        
+
+        $json = file_get_contents('php://input');
+        $data = json_decode($json);
+        $product_name = $data->product_name;
+        $quantity = $data->quantity;
+
 
         $this->Product_model->insert(array(
             'product_name'=>$product_name,

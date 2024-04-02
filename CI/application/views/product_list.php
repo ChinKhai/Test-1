@@ -89,7 +89,6 @@
 
     <script>
         function addqtyAjax(pid){
-            console.log(pid);
 
             $.post("<?=base_url('addqtyAPI')?>",{quantity:1,product_id:pid},function(result){
                 console.log(result);
